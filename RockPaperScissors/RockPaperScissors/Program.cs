@@ -56,7 +56,6 @@ namespace RockPaperScissors
              */
             int score = 0; //skore hráče
             int scorePC = 0; //skoer počítače
-            double winLose; //pomocná proměnná
             string pResponse; //tah hráče
             int pRes =0; //číselný tah hráče
             int pcRes =0; // tah PC
@@ -94,64 +93,34 @@ namespace RockPaperScissors
 
             void Hra ()
             {
-                pcRes = rnd.Next(1, 4);
-                winLose = pcRes / pRes;
-                if (winLose == 1)
+                pcRes = rnd.Next(1, 4); // tah PC
+                if (pRes == pcRes)
                 {
-                    Console.WriteLine("\n Plichta");
-                    Skore();
-                    Console.WriteLine(pcRes);
+                    Console.WriteLine("\nJe to plichta!!!");
                 }
-                else if (winLose == 1/3)
+                else if ((pRes == 1 && pcRes == 3) ||
+                         (pRes == 2 && pcRes == 1) ||
+                         (pRes == 3 && pcRes == 2))
                 {
-                    Console.WriteLine("Gratuluji vyhrál jsi, já dal kamen a ty jsi dal papír");
-                    score++;
-                    Skore();
-                    Console.WriteLine(pcRes);
-                }
-                else if (winLose == 3)
-                {
-                    Console.WriteLine("Ha ha ha vyhrál jsem, já dal papir a ty jsi dal kamen");
+                    Console.WriteLine("Ha looool prohrál si!! Nooooooooooooooob!!");
                     scorePC++;
-                    Skore();
-                    Console.WriteLine(pcRes);
                 }
-                else if (winLose == 2/3)
+                else
                 {
-                    Console.WriteLine("Ha ha ha vyhrál jsem, já dal nuzky a ty jsi dal papir");
-                    scorePC++;
-                    Skore();
-                    Console.WriteLine(pcRes);
-                }
-                else if (winLose == 3/2)
-                {
-                    Console.WriteLine("Gratuluji vyhrál jsi, já dal papir a ty jsi dal nuzky");
+                    Console.WriteLine("\nGratuluju vyhrál jsi!");
+                    
                     score++;
-                    Skore();
-                    Console.WriteLine(pcRes);
                 }
-                else if (winLose ==1/2)
-                {
-                    Console.WriteLine("Ha ha ha vyhrál jsem, já dal kamen a ty jsi dal nuzky");
-                    scorePC++;
-                    Skore();
-                    Console.WriteLine(pcRes);
-                }
-                else if (winLose ==2)
-                {
-                    Console.WriteLine("Gratuluji vyhrál jsi, já dal nuzky a ty jsi dal kamen");
-                    score++;
-                    Skore();
-                    Console.WriteLine(pcRes);
-                }
+                Console.WriteLine(pcRes);
+                Skore();
             }
 
             Console.WriteLine("zdravím, pojďme si zahrát kámen nůžky papír teď \n pokud chceš zahrát kamen napiš....kamen, pokud nůžky....nůžky, opravdu musím říkat co máš napsat, když cheš hrát papir? ");            
             Skore();
-            Tah();   
 
-            while (score == 3 || scorePC == 3)
+            while (score < 3 && scorePC < 3)
             {
+                Tah();
                 Hra();
             }
             if (score ==3)

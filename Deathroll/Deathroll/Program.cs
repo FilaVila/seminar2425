@@ -13,6 +13,16 @@ namespace Deathroll
 {
     internal class Program
     {
+        public static void Napis(string intput)
+        {
+            Console.WriteLine(intput+"\n");
+        }
+
+        public static int TahHrace() 
+        {
+            int a = Convert.ToInt32(Console.ReadLine());
+            return a;
+        }
         static void Main(string[] args)
         {
             /*
@@ -55,6 +65,37 @@ namespace Deathroll
              * ROZSIRENI:
              * - umozni uzivateli opakovat deathroll dokud ma nejake goldy
              */
+            Random rnd = new Random();
+            int apvg = 0; //aktuální počet vsazených goldů
+            bool pp = true; //hraje hráč? player playing?
+
+            string zprava1 = "Zdravim dobrodruhu, vyzývám těš na deathroll kolik goldů chceš vsadit \n";
+            Napis(zprava1);
+            apvg = TahHrace();
+            while (apvg>1) 
+            {
+                string zprava6 = "Tak teď hraješ ty:";
+                Napis(zprava6);
+                pp = true;
+                apvg = rnd.Next(apvg);
+                Napis(Convert.ToString(apvg));
+                string zprava3 = "Tak a teď hraju já";
+                pp = false;
+                Napis(zprava3);
+                apvg = rnd.Next(apvg);
+                Napis(Convert.ToString(apvg));
+            }
+            if (pp == true) 
+            {
+                string zprava4 = "Ha lol prohrál jsi";
+                Napis(zprava4);
+            }
+            else
+            {
+                string zprava5 = "Prohrál jsem a hanba padla na můj rod";
+                Napis(zprava5);
+            }
+            Console.ReadKey();
         }
     }
 }
