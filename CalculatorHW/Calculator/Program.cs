@@ -37,12 +37,12 @@ namespace Calculator
             *       - https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/iteration-statements#the-while-statement
             * 3) Umozni uzivateli zadavat i desetinna cisla, tedy prekopej kalkulacku tak, aby umela pracovat s floaty
             */
-            float a;
-            float b;
+            float a =0;
+            float b =0;
             float result = 0;
             string result2 =""; // proměnná pro odmocňování
-            float result2_2 =0;
             string operace;
+            bool repeat = true;
             Random rnd = new Random();
             string obracennéLomitkoAbychHoNemuselHledatPokazdeJakoVul = ("\\");
 
@@ -75,57 +75,76 @@ namespace Calculator
                 Console.WriteLine("\n");
             }
 
-            Write("Zdravím já jsem tvoje nová kalkulačka, prosím zadej své první číslo (nezapomeň má to být ve floatu) se kteým budu počítat.");
-            a = LoadNumber();
-            Write("Dobrá tak to máme první číslo, teď mi prosím dej druhé číslo.");
-            b = LoadNumber();
-            Write("Pecka tak a teď mi řekni co s tím budeme dělat. Chceš to: \n secist \n odecist \n vydelit \n vynásobit \n umocnit (a na b) \n odmocnit (2 z obou čísel) \n random (sečte čísla a vynásobí náhodným číslem mezi 7 a 528)");
-
-            switch (operace = Console.ReadLine())
+            void Calculate(float a, float b) 
             {
-                case "secist":
-                    result = a+b;
-                    break;
-                case "odecist":
-                    result = a - b;
-                    break;
-                case "vydelit":
-                    if (b ==0)
-                    {
-                        Write("Sorry, ale nulou dělit nelze. Měj se.");
+                Write("Prosím zadej své první číslo (nezapomeň má to být ve floatu) se kteým budu počítat.");
+                a = LoadNumber();
+                Write("Dobrá tak to máme první číslo, teď mi prosím dej druhé číslo.");
+                b = LoadNumber();
+                Write("Pecka tak a teď mi řekni co s tím budeme dělat. Chceš to: \n secist \n odecist \n vydelit \n vynasobit \n umocnit (a na b) \n odmocnit (2 odmocnina z obou čísel) \n random (sečte čísla a vynásobí náhodným číslem mezi 7 a 528)\n odmocnina2 (b odmocnina z a) \n HELP");
+                switch (operace = Console.ReadLine())
+                {
+                    case "secist":
+                        result = a + b;
+                        break;
+                    case "odecist":
+                        result = a - b;
+                        break;
+                    case "vydelit":
+                        if (b == 0)
+                        {
+                            Write("Sorry, ale nulou dělit nelze. Měj se.");
+                            Console.ReadKey();
+                            Environment.Exit(0);
+                        }
+                        else
+                        {
+                            result = a / b;
+                        }
+                        break;
+                    case "vynasobit":
+                        result = a * b;
+                        break;
+                    case "umocnit": //od Mistrail Ai
+                        result = a;
+                        for (int i = 1; i < b; i++)
+                        {
+                            result = result * a;
+                        }
+                        break;
+                    case "odmocnit":
+                        result = (float)Math.Sqrt(a);
+                        result2 = " a " + Convert.ToString((float)Math.Sqrt(b));
+                        break;
+                    case "random":
+                        result = (a + b) * rnd.Next(7, 529);
+                        break;
+                    case "odmocnina2":
+                        result = (float)Math.Pow(a, 1 / b);
+                        break;
+                    case "HELP":
+                        System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=xvFZjo5PgG0");
+                        break;
+                    default:
+                        Write("Hele tak ty seš jinej případ, končím.");
                         Console.ReadKey();
                         Environment.Exit(0);
-                    }
-                    else
-                    {
-                        result = a / b;
-                    }
-                    break;
-                case "vynásobit":
-                    result = a * b;
-                    break;
-                case "umocnit": //od Mistrail Ai
-                    result = a;
-                    for (int i = 1; i < b; i++)
-                    {
-                        result = result * a;
-                    }
-                    break;
-                case "odmocnit":
-                    result = (float)Math.Sqrt(a);
-                    result2_2 = (float)Math.Sqrt(b);
-                    result2 = " a "+Convert.ToString(result2_2);
-                    break;
-                case "random":
-                    result = (a + b) * rnd.Next(7,529);
-                    break;
-                default:
-                    Write("Hele tak ty seš jinej případ, končím.");
-                    Console.ReadKey();
-                    Environment.Exit(0);
-                    break;
+                        break;
+                }
+                Write("Tak jsme to spolu zvládli, ale že to byl fuška....výsledek je " + result + result2+ "\n");
             }
-            Write("Tak jsme to spolu zvládli, ale že to byl fuška....výsledek je "+result + result2);
+            Write("Zdravím já jsem tvoje nová kalkulačka.");
+            while (repeat == true)
+            {
+                Calculate(a, b);
+                Write("Přeješ si jěště něco spočítat: \n ANO \n NE");
+                if (Console.ReadLine()=="NE")
+                {
+                    Write("Tak jo měj se!!!");
+                    break;
+                }
+                Write("Oh damn here we go again....\n");
+            }
             Console.ReadKey(); //Toto nech jako posledni radek, aby se program neukoncil ihned, ale cekal na stisk klavesy od uzivatele.
         }
     }
