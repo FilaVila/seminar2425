@@ -41,7 +41,7 @@ namespace Calculator
             float b =0;
             float result = 0;
             string result2 =""; // proměnná pro odmocňování
-            string operace;
+            string operation;
             bool repeat = true;
             Random rnd = new Random();
             string obracennéLomitkoAbychHoNemuselHledatPokazdeJakoVul = ("\\");
@@ -82,7 +82,7 @@ namespace Calculator
                 Write("Dobrá tak to máme první číslo, teď mi prosím dej druhé číslo.");
                 b = LoadNumber();
                 Write("Pecka tak a teď mi řekni co s tím budeme dělat. Chceš to: \n secist \n odecist \n vydelit \n vynasobit \n umocnit (a na b) \n odmocnit (2 odmocnina z obou čísel) \n random (sečte čísla a vynásobí náhodným číslem mezi 7 a 528)\n odmocnina2 (b odmocnina z a) \n HELP");
-                switch (operace = Console.ReadLine())
+                switch (operation = Console.ReadLine())
                 {
                     case "secist":
                         result = a + b;

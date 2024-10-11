@@ -72,7 +72,7 @@ namespace Deathroll
             string zprava1 = "Zdravim dobrodruhu, vyzývám těš na deathroll kolik goldů chceš vsadit \n";
             Napis(zprava1);
             apvg = TahHrace();
-            while (apvg>1) 
+            while (apvg>=1) 
             {
                 string zprava6 = "Tak teď hraješ ty:";
                 Napis(zprava6);
