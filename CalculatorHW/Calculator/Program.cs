@@ -37,7 +37,7 @@ namespace Calculator
                 }
                 catch (FormatException)
                 {
-                    Console.WriteLine("Hele to asi nebude float zkus to znova");
+                    Write("Hele to asi nebude float zkus to znova");
                 }
             }
             return number;
@@ -51,6 +51,35 @@ namespace Calculator
             }
             Console.WriteLine("\n");
         }
+        static float Add(float a,float b) 
+        {
+            float result = a + b;
+            return result;
+        }
+        static float Substraction(float a,float b) 
+        {
+            float result = a - b;   
+            return result;
+        }
+        static float Division(float a, float b) 
+        {
+            float result = a / b;
+            return result;
+        }
+        static float AtimesB(float a, float b) 
+        {
+            float result = a * b;
+            return result; ;
+        }
+        static float Random(float a, float b) 
+        {
+            float result = (a + b) * rnd.Next(7, 529);
+            return result;
+        }
+        static void Help() 
+        {
+            System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=xvFZjo5PgG0");
+        }
         static void Calculate(float a, float b)
         {
             Write("Prosím zadej své první číslo (nezapomeň má to být ve floatu) se kteým budu počítat.");
@@ -61,10 +90,10 @@ namespace Calculator
             switch (operation = Console.ReadLine())
             {
                 case "secist":
-                    result = a + b;
+                    result = Add(a,b);
                     break;
                 case "odecist":
-                    result = a - b;
+                    result = Substraction(a,b);
                     break;
                 case "vydelit":
                     if (b == 0)
@@ -75,11 +104,11 @@ namespace Calculator
                     }
                     else
                     {
-                        result = a / b;
+                        result = Division(a,b);
                     }
                     break;
                 case "vynasobit":
-                    result = a * b;
+                    result = AtimesB(a,b);
                     break;
                 case "umocnit": //od Mistrail Ai
                     result = a;
@@ -93,13 +122,13 @@ namespace Calculator
                     result2 = " a " + Convert.ToString((float)Math.Sqrt(b));
                     break;
                 case "random":
-                    result = (a + b) * rnd.Next(7, 529);
+                    result = Random(a,b);
                     break;
                 case "odmocnina2":
                     result = (float)Math.Pow(a, 1 / b);
                     break;
                 case "HELP":
-                    System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=xvFZjo5PgG0");
+                    Help();
                     break;
                 default:
                     Write("Hele tak ty seš jinej případ, končím.");
