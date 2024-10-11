@@ -82,6 +82,7 @@ namespace Calculator
         }
         static void Calculate(float a, float b)
         {
+            result2 = "";
             Write("Prosím zadej své první číslo (nezapomeň má to být ve floatu) se kteým budu počítat.");
             a = LoadNumber();
             Write("Dobrá tak to máme první číslo, teď mi prosím dej druhé číslo.");
@@ -136,7 +137,7 @@ namespace Calculator
                     Environment.Exit(0);
                     break;
             }
-            Write("Tak jsme to spolu zvládli, ale že to byl fuška....výsledek je " + result + result2 + "\n");
+            Write("Tak jsme to spolu zvládli, ale že to byla fuška....výsledek je " + result + result2 + "\n");
         }
         static void Main(string[] args)
         {
