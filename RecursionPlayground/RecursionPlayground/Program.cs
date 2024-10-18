@@ -16,55 +16,32 @@ namespace RecursionPlayground
     {
         static void Main(string[] args)
         {
-            int n = int.Parse(Console.ReadLine()); // Nacteme cislo n, pro ktere budeme pocitat jeho faktorial a n-ty prvek Fibonacciho posloupnosti.
-            int factorial = Factorial(n); // Prvni zavolani pro vypocet faktorialu, ulozeni do promenne factorial.
-            int fibonacci = Fibonacci(n); // Prvni zavolani pro vypocet Fibonacciho posloupnosti, ulozeni do promenne fibonacci.
-            Console.WriteLine($"Pro cislo {n} je faktorial {factorial} a {n}. prvek Fibonacciho posloupnosti je {fibonacci}"); // Vypsani vysledku uzivateli.
+            int n = int.Parse(Console.ReadLine()); 
+            int factorial = Factorial(n); 
+            int fibonacci = Fibonacci(n); 
+            Console.WriteLine($"Pro cislo {n} je faktorial {factorial} a {n}. prvek Fibonacciho posloupnosti je {fibonacci}"); 
             Console.ReadKey();
         }
 
         static int Factorial(int n)
         {
-            if (n > 1) 
-            {
-                return n * Factorial(n-1);
-            }
-            else if (n ==1||n==0)
+            if (n <= 1)
             {
                 return 1;
             }
-            else
-            {
-                return 69;
-            }
-            // TODO: Urci ukoncovaci podminku pro faktorial a zavolej Factorial zevnitr se spravnym parametrem / vypoctem.
-             // TODO: Uprav, aby Factorial vracel spravnou hodnotu.
+            return n * Factorial(n - 1);
         }
-
         static int Fibonacci(int n)
         {
-            int number;
-            if (n > 1) 
+            if (n <= 0)
             {
-                number = 1 + Fibonacci(n-1);
-                return number;
+                return 0;
             }
-            else if (n ==1)
+            else if (n == 1)
             {
                 return 1;
             }
-            else if(n == 2) 
-            {
-                return 1;
-            }
-            else
-            {
-                Console.WriteLine("Blbečku minusovej prvek fibonaciho posloupnosti neni");
-                Console.ReadKey();
-                Environment.Exit(0);
-            }
-            // TODO: Urci ukoncovaci podminku pro Fibonacciho a zavolej Fibonacci zevnitr se spravnym parametrem / vypoctem.
-            return 0; // TODO: Uprav, aby Fibonacci vracel spravnou hodnotu.
+            return Fibonacci(n - 1) + Fibonacci(n - 2);
         }
     }
 }
