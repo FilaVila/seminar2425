@@ -166,44 +166,44 @@ namespace BattleShip2
                 switch (LoadChar())
                 {
                     case 'L':
-                        Write("A kam tetno koráb chceš umístit?\nZadej políčko, kde bude tvoje loď předek (např. A4): ");
+                        Write("A kam tetno koráb chceš umístit?\nZadej políčko, kde bude mít tvoje loď předek (např. A4): ");
                         var coordinatesL = Input(); //načte souřadnice od uživatele
                         Console.WriteLine("Tak a ješte zadej směr: Nahoru (N), Dolu (D), Doleva(L), Doprava (P)");
                         char directionL = LoadChar2();// načte směr lodi
-                        PlaceShipOnBoard(arrayP, coordinatesL.row, coordinatesL.col, 5, directionL); //funkce umístí loď na hrací plochu, vkládám, pole do kterého vkládám: souř. a  velikost lodě a směr 
-                        ship.RemoveAt(0);
+                        PlaceShipOnBoard(arrayP, coordinatesL.col, coordinatesL.row, 5, directionL); //funkce umístí loď na hrací plochu, vkládám, pole do kterého vkládám: souř. a  velikost lodě a směr 
+                        ship.Remove("1x Letadlová loď (velikost 1x5): L"); 
                         break;
                     case 'B':
-                        Write("A kam tetno koráb chceš umístit?\nZadej políčko, kde bude tvoje loď předek (např. A4): ");
+                        Write("A kam tetno koráb chceš umístit?\nZadej políčko, kde bude mít tvoje loď předek (např. A4): ");
                         var coordinatesB = Input();
                         Console.WriteLine("Tak a ješte zadej směr: Nahoru (N), Dolu (D), Doleva(L), Doprava (P)");
                         char directionB = LoadChar2();
-                        PlaceShipOnBoard(arrayP, coordinatesB.row, coordinatesB.col, 4, directionB);
-                        ship.RemoveAt(1);
+                        PlaceShipOnBoard(arrayP, coordinatesB.col, coordinatesB.row, 4, directionB);
+                        ship.Remove("1x Bitevní loď(velikost 1x4): B");
                         break;
                     case 'K':
-                        Write("A kam tetno koráb chceš umístit?\nZadej políčko, kde bude tvoje loď předek (např. A4): ");
+                        Write("A kam tetno koráb chceš umístit?\nZadej políčko, kde bude mít tvoje loď předek (např. A4): ");
                         var coordinatesK = Input();
                         Console.WriteLine("Tak a ješte zadej směr: Nahoru (N), Dolu (D), Doleva(L), Doprava (P)");
                         char directionK = LoadChar2();
-                        PlaceShipOnBoard(arrayP, coordinatesK.row, coordinatesK.col, 3, directionK);
-                        ship.RemoveAt(2);
+                        PlaceShipOnBoard(arrayP, coordinatesK.col, coordinatesK.row, 3, directionK);
+                        ship.Remove("1x Křižník (velikost 1x3): K");
                         break;
                     case 'P':
-                        Write("A kam tetno koráb chceš umístit?\nZadej políčko, kde bude tvoje loď předek (např. A4): ");
-                        ship.RemoveAt(3);                        
+                        Write("A kam tetno koráb chceš umístit?\nZadej políčko, kde bude mít tvoje loď předek (např. A4): ");                                               
                         var coordinatesP = Input();
                         Console.WriteLine("Tak a ješte zadej směr: Nahoru (N), Dolu (D), Doleva(L), Doprava (P)");
                         char directionP = LoadChar2();
-                        PlaceShipOnBoard(arrayP, coordinatesP.row, coordinatesP.col, 3, directionP);
+                        PlaceShipOnBoard(arrayP, coordinatesP.col, coordinatesP.row, 3, directionP);
+                        ship.Remove("1x Ponorka (velikost 1x3): P");
                         break;
                     case 'T':
-                        Write("A kam tetno koráb chceš umístit?\nZadej políčko, kde bude tvoje loď předek (např. A4): ");
-                        ship.RemoveAt(4);
+                        Write("A kam tetno koráb chceš umístit?\nZadej políčko, kde bude mít tvoje loď předek (např. A4): ");                        
                         var coordinatesT = Input();
                         Console.WriteLine("Tak a ješte zadej směr: Nahoru (N), Dolu (D), Doleva(L), Doprava (P)");
                         char directionT = LoadChar2();
-                        PlaceShipOnBoard(arrayP, coordinatesT.row, coordinatesT.col, 2, directionT);
+                        PlaceShipOnBoard(arrayP, coordinatesT.col, coordinatesT.row, 2, directionT);
+                        ship.Remove("1x Torpédoborec (velikost 1x2): T");
                         break;
                     default:
                         Write("Tak takovou loď neznám, zkus to znova!");
@@ -213,12 +213,89 @@ namespace BattleShip2
                 {
                     Write("Jakou loď chceš umístit (zadej jen písmenko označující daný typ lodě)");
                     PrintList(ship);
-                }                
+                }
+                PrintArray(arrayP);
             }            
+        }
+        static void PlaceShipsRandomly(string[,] array) //funkce umístí lodě počítače náhodně 
+        {
+            List<(int size, char direction)> ships = new List<(int size, char direction)>{(5, 'N'), (4, 'D'), (3, 'L'), (3, 'P'), (2, 'N')}; //tady mi musel pomoci Mistrail AI
+            Random random = new Random();
+            foreach (var ship in ships)
+            {
+                bool placed = false;
+                while (!placed)
+                {
+                    int startRow = random.Next(1, 11);
+                    int startCol = random.Next(1, 11);
+                    char direction = (char)random.Next('N', 'P' + 1);
+
+                    bool fits = true;
+                    bool overlap = false;
+
+                    switch (direction)
+                    {
+                        case 'N':
+                            for (int i = 0; i < ship.size; i++)
+                            {
+                                if (startRow - i < 1 || array[startRow - i, startCol] != "[0]")
+                                {
+                                    fits = false;
+                                    overlap = true;
+                                    break;
+                                }
+                            }
+                            break;
+
+                        case 'D':
+                            for (int i = 0; i < ship.size; i++)
+                            {
+                                if (startRow + i > 10 || array[startRow + i, startCol] != "[0]")
+                                {
+                                    fits = false;
+                                    overlap = true;
+                                    break;
+                                }
+                            }
+                            break;
+
+                        case 'L':
+                            for (int i = 0; i < ship.size; i++)
+                            {
+                                if (startCol - i < 1 || array[startRow, startCol - i] != "[0]")
+                                {
+                                    fits = false;
+                                    overlap = true;
+                                    break;
+                                }
+                            }
+                            break;
+
+                        case 'P':
+                            for (int i = 0; i < ship.size; i++)
+                            {
+                                if (startCol + i > 10 || array[startRow, startCol + i] != "[0]")
+                                {
+                                    fits = false;
+                                    overlap = true;
+                                    break;
+                                }
+                            }
+                            break;
+                    }
+
+                    if (fits && !overlap)
+                    {
+                        PlaceShipOnBoard2(array, startRow, startCol, ship.size, direction);
+                        placed = true;
+                    }
+                }
+            }
         }
         static void PlaceShipOnBoard(string[,] array, int startRow, int startCol, int shipSize, char direction)
         {
             bool fits = true; // vejde se = ano/ne
+            bool overlap = false; // překrývají se = ano/ne
 
             switch (direction)
             {
@@ -230,8 +307,13 @@ namespace BattleShip2
                             fits = false;
                             break;
                         }
+                        if (array[startRow - i, startCol] != "[0]") // kontroluje překrývání
+                        {
+                            overlap = true;
+                            break;
+                        }
                     }
-                    if (fits)
+                    if (fits && !overlap)
                     {
                         for (int i = 0; i < shipSize; i++)
                         {
@@ -243,17 +325,22 @@ namespace BattleShip2
                 case 'D':
                     for (int i = 0; i < shipSize; i++)
                     {
-                        if (startRow + i > 10) 
+                        if (startRow + i > 10)
                         {
                             fits = false;
                             break;
                         }
+                        if (array[startRow + i, startCol] != "[0]")
+                        {
+                            overlap = true;
+                            break;
+                        }
                     }
-                    if (fits)
+                    if (fits && !overlap)
                     {
                         for (int i = 0; i < shipSize; i++)
                         {
-                            array[startRow + i, startCol] = "[S]"; 
+                            array[startRow + i, startCol] = "[S]";
                         }
                     }
                     break;
@@ -261,17 +348,22 @@ namespace BattleShip2
                 case 'L':
                     for (int i = 0; i < shipSize; i++)
                     {
-                        if (startCol - i < 1) 
+                        if (startCol - i < 1)
                         {
                             fits = false;
                             break;
                         }
+                        if (array[startRow, startCol - i] != "[0]")
+                        {
+                            overlap = true;
+                            break;
+                        }
                     }
-                    if (fits)
+                    if (fits && !overlap)
                     {
                         for (int i = 0; i < shipSize; i++)
                         {
-                            array[startRow, startCol - i] = "[S]"; 
+                            array[startRow, startCol - i] = "[S]";
                         }
                     }
                     break;
@@ -279,17 +371,22 @@ namespace BattleShip2
                 case 'P':
                     for (int i = 0; i < shipSize; i++)
                     {
-                        if (startCol + i > 10) 
+                        if (startCol + i > 10)
                         {
                             fits = false;
                             break;
                         }
+                        if (array[startRow, startCol + i] != "[0]")
+                        {
+                            overlap = true;
+                            break;
+                        }
                     }
-                    if (fits)
+                    if (fits && !overlap)
                     {
                         for (int i = 0; i < shipSize; i++)
                         {
-                            array[startRow, startCol + i] = "[S]"; 
+                            array[startRow, startCol + i] = "[S]";
                         }
                     }
                     break;
@@ -302,6 +399,43 @@ namespace BattleShip2
             if (!fits)
             {
                 Write("Kapitáne, že sem se ta loď opravdu nevleze....");
+            }
+            else if (overlap)
+            {
+                Write("Kapitáne, na tomto místě už je loď. Zkus to znovu.");
+            }
+        }
+        static void PlaceShipOnBoard2(string[,] array, int startRow, int startCol, int shipSize, char direction) //stejné jako PlaceShipsOnBoard, ale bez hcybových hlášek
+        {
+            switch (direction)
+            {
+                case 'N':
+                    for (int i = 0; i < shipSize; i++)
+                    {
+                        array[startRow - i, startCol] = "[S]";
+                    }
+                    break;
+
+                case 'D':
+                    for (int i = 0; i < shipSize; i++)
+                    {
+                        array[startRow + i, startCol] = "[S]";
+                    }
+                    break;
+
+                case 'L':
+                    for (int i = 0; i < shipSize; i++)
+                    {
+                        array[startRow, startCol - i] = "[S]";
+                    }
+                    break;
+
+                case 'P':
+                    for (int i = 0; i < shipSize; i++)
+                    {
+                        array[startRow, startCol + i] = "[S]";
+                    }
+                    break;
             }
         }
         static void Main(string[] args)
@@ -316,6 +450,8 @@ namespace BattleShip2
             Write("Takhle vypadá tvoje hrací pole:");
             PrintArray(arrayP);
             PlaceShip(arrayP);
+            PlaceShipsRandomly(arrayG);
+            Write("hura hej funguje to");
             Console.ReadKey();
         }
     }
