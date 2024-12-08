@@ -45,34 +45,50 @@ namespace BattleShip2
             }
             Console.WriteLine("\n");
         }
-        static int LoadNumber() //"funkce" načte input od uživatele a zkusí jestli je to float, a bude to zkouset dokud se uzivatel netrefí
+        static char LoadChar() //"funkce" načte input od uživatele a zkusí jestli je to cahr, a bude to zkouset dokud se uzivatel netrefí
         {
-            int number = 1;
-            bool n = false; //n jako náhodná proměnná
+            char letter = 'A'; // funkce kontroluje vstup pro tzp lodě
+            bool n = false;
             while (n == false)
             {
                 try
                 {
-                    number = int.Parse(Console.ReadLine());
-                    n = true;
+                    string input = Console.ReadLine().ToUpper();
+                    if (input.Length != 1 || !"LBKPT".Contains(input))
+                    {
+                        Write("Neplatný vstup. Zadejte jeden ze směrů: Nahoru (N), Dolů (D), Doleva (L), Doprava (P).");
+                    }
+                    else
+                    {
+                        letter = char.Parse(input);
+                        n = true;
+                    }
                 }
                 catch (FormatException)
                 {
-                    Write("Hele to asi nebude float zkus to znova");
+                    Write("Hele to asi nebude Char zkus to znova");
                 }
             }
-            return number;
+            return letter;
         }
-        static char LoadChar() //"funkce" načte input od uživatele a zkusí jestli je to float, a bude to zkouset dokud se uzivatel netrefí
+        static char LoadChar2() // načítá vstup pro směr lodí
         {
             char letter = 'A';
-            bool n = false; //n jako náhodná proměnná
+            bool n = false;
             while (n == false)
             {
                 try
                 {
-                    letter = char.Parse(Console.ReadLine());
-                    n = true;
+                    string input = Console.ReadLine().ToUpper();
+                    if (input.Length != 1 || !"NDLP".Contains(input))
+                    {
+                        Write("Neplatný vstup. Zadejte jeden ze směrů: Nahoru (N), Dolů (D), Doleva (L), Doprava (P).");
+                    }
+                    else
+                    {
+                        letter = char.Parse(input);
+                        n = true;
+                    }
                 }
                 catch (FormatException)
                 {
@@ -101,40 +117,44 @@ namespace BattleShip2
                 array[0, i] = "[" + (char)('A' + i-1 ) + "]"; // ChatGpt vařil
             }
         }
-        static void Input() 
+        static (int row, int col) Input()
         {
             bool validInput = false;
-            List<char> rows = new List<char>(){ 'A' , 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J' };//písmenka
-            
+            List<char> rows = new List<char>() { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J' }; //sloupečky
+
             while (!validInput)
             {
-                string input =Console.ReadLine();
-                if (input.Length != 1)
+                string input = Console.ReadLine().ToUpper();
+                if (input.Length != 2)
                 {
-                    //osetreni spatneho vstupu
-                    validInput = false;
+                    Write("Neplatná souřadnice, zadej znovu., např A4");
                 }
                 else
                 {
-                    char row = input[0];
-                    int index = rows.IndexOf(row);
-                    if (index==-1)
+                    char rowChar = input[0];
+                    int index = rows.IndexOf(rowChar);
+                    if (index == -1 || !char.IsDigit(input[1]))
                     {
-                        //osetreni spatneho vstupu
-                        validInput = false;
+                        Write("Neplatná souřadnice, zadej znovu., např A4");
                     }
                     else
                     {
-                        //nastavení souradnice radku podle promenne indexu
+                        int col = int.Parse(input[1].ToString());
+                        if (col < 1 || col > 10)
+                        {
+                            Write("Neplatná souřadnice, zadej znovu., např A4");
+                        }
+                        else
+                        {
+                            validInput = true;
+                            return (index + 1, col); // vráti souřadnice bodu
+                        }
                     }
                 }
-            }            
+            }
+            return (-1, -1); // jsem bychom jsme se neměli nikdy dostat
         }
-        static void Game() 
-        {
-
-        }
-        static void PlaceShip() 
+        static void PlaceShip(string[,] arrayP) 
         {
             Write("Tak a teď si potřebuješ vybrat kam dáš své loďstvo");
             Console.WriteLine("\nTvé loďstvo čítá:\n");
@@ -146,32 +166,143 @@ namespace BattleShip2
                 switch (LoadChar())
                 {
                     case 'L':
-                        Console.WriteLine("Hurááááá");
+                        Write("A kam tetno koráb chceš umístit?\nZadej políčko, kde bude tvoje loď předek (např. A4): ");
+                        var coordinatesL = Input(); //načte souřadnice od uživatele
+                        Console.WriteLine("Tak a ješte zadej směr: Nahoru (N), Dolu (D), Doleva(L), Doprava (P)");
+                        char directionL = LoadChar2();// načte směr lodi
+                        PlaceShipOnBoard(arrayP, coordinatesL.row, coordinatesL.col, 5, directionL); //funkce umístí loď na hrací plochu, vkládám, pole do kterého vkládám: souř. a  velikost lodě a směr 
                         ship.RemoveAt(0);
                         break;
                     case 'B':
-                        Console.WriteLine("Hurááááá");
+                        Write("A kam tetno koráb chceš umístit?\nZadej políčko, kde bude tvoje loď předek (např. A4): ");
+                        var coordinatesB = Input();
+                        Console.WriteLine("Tak a ješte zadej směr: Nahoru (N), Dolu (D), Doleva(L), Doprava (P)");
+                        char directionB = LoadChar2();
+                        PlaceShipOnBoard(arrayP, coordinatesB.row, coordinatesB.col, 4, directionB);
                         ship.RemoveAt(1);
                         break;
                     case 'K':
-                        Console.WriteLine("Hurááááá");
+                        Write("A kam tetno koráb chceš umístit?\nZadej políčko, kde bude tvoje loď předek (např. A4): ");
+                        var coordinatesK = Input();
+                        Console.WriteLine("Tak a ješte zadej směr: Nahoru (N), Dolu (D), Doleva(L), Doprava (P)");
+                        char directionK = LoadChar2();
+                        PlaceShipOnBoard(arrayP, coordinatesK.row, coordinatesK.col, 3, directionK);
                         ship.RemoveAt(2);
                         break;
                     case 'P':
-                        Console.WriteLine("Hurááááá");
-                        ship.RemoveAt(3);
+                        Write("A kam tetno koráb chceš umístit?\nZadej políčko, kde bude tvoje loď předek (např. A4): ");
+                        ship.RemoveAt(3);                        
+                        var coordinatesP = Input();
+                        Console.WriteLine("Tak a ješte zadej směr: Nahoru (N), Dolu (D), Doleva(L), Doprava (P)");
+                        char directionP = LoadChar2();
+                        PlaceShipOnBoard(arrayP, coordinatesP.row, coordinatesP.col, 3, directionP);
                         break;
                     case 'T':
-                        Console.WriteLine("Hurááááá");
+                        Write("A kam tetno koráb chceš umístit?\nZadej políčko, kde bude tvoje loď předek (např. A4): ");
                         ship.RemoveAt(4);
+                        var coordinatesT = Input();
+                        Console.WriteLine("Tak a ješte zadej směr: Nahoru (N), Dolu (D), Doleva(L), Doprava (P)");
+                        char directionT = LoadChar2();
+                        PlaceShipOnBoard(arrayP, coordinatesT.row, coordinatesT.col, 2, directionT);
                         break;
                     default:
                         Write("Tak takovou loď neznám, zkus to znova!");
                         break;
                 }
-                Write("Jakou loď chceš umístit (zadej jen písmenko označující daný typ lodě)");
-                PrintList(ship);
+                if (ship.Count !=0)
+                {
+                    Write("Jakou loď chceš umístit (zadej jen písmenko označující daný typ lodě)");
+                    PrintList(ship);
+                }                
             }            
+        }
+        static void PlaceShipOnBoard(string[,] array, int startRow, int startCol, int shipSize, char direction)
+        {
+            bool fits = true; // vejde se = ano/ne
+
+            switch (direction)
+            {
+                case 'N':
+                    for (int i = 0; i < shipSize; i++)
+                    {
+                        if (startRow - i < 1) // kontroluje jestli se loď vejde nebo ne
+                        {
+                            fits = false;
+                            break;
+                        }
+                    }
+                    if (fits)
+                    {
+                        for (int i = 0; i < shipSize; i++)
+                        {
+                            array[startRow - i, startCol] = "[S]"; // označí loď na mapě
+                        }
+                    }
+                    break;
+
+                case 'D':
+                    for (int i = 0; i < shipSize; i++)
+                    {
+                        if (startRow + i > 10) 
+                        {
+                            fits = false;
+                            break;
+                        }
+                    }
+                    if (fits)
+                    {
+                        for (int i = 0; i < shipSize; i++)
+                        {
+                            array[startRow + i, startCol] = "[S]"; 
+                        }
+                    }
+                    break;
+
+                case 'L':
+                    for (int i = 0; i < shipSize; i++)
+                    {
+                        if (startCol - i < 1) 
+                        {
+                            fits = false;
+                            break;
+                        }
+                    }
+                    if (fits)
+                    {
+                        for (int i = 0; i < shipSize; i++)
+                        {
+                            array[startRow, startCol - i] = "[S]"; 
+                        }
+                    }
+                    break;
+
+                case 'P':
+                    for (int i = 0; i < shipSize; i++)
+                    {
+                        if (startCol + i > 10) 
+                        {
+                            fits = false;
+                            break;
+                        }
+                    }
+                    if (fits)
+                    {
+                        for (int i = 0; i < shipSize; i++)
+                        {
+                            array[startRow, startCol + i] = "[S]"; 
+                        }
+                    }
+                    break;
+
+                default:
+                    Write("Špatně zadaný směr, zkus to znova");
+                    return;
+            }
+
+            if (!fits)
+            {
+                Write("Kapitáne, že sem se ta loď opravdu nevleze....");
+            }
         }
         static void Main(string[] args)
         {
@@ -184,7 +315,7 @@ namespace BattleShip2
             SetArray(arrayG);
             Write("Takhle vypadá tvoje hrací pole:");
             PrintArray(arrayP);
-            PlaceShip();
+            PlaceShip(arrayP);
             Console.ReadKey();
         }
     }
