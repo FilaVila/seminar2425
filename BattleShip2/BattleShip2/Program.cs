@@ -45,9 +45,9 @@ namespace BattleShip2
             }
             Console.WriteLine("\n");
         }
-        static char LoadChar() //"funkce" načte input od uživatele a zkusí jestli je to cahr, a bude to zkouset dokud se uzivatel netrefí
+        static char LoadChar() //načte input od uživatele a zkusí jestli je to cahr, a bude to zkouset dokud se uzivatel netrefí
         {
-            char letter = 'A'; // funkce kontroluje vstup pro tzp lodě
+            char letter = 'A'; // kontroluje vstup pro typ lodě
             bool n = false;
             while (n == false)
             {
@@ -114,7 +114,7 @@ namespace BattleShip2
             array[10, 0] = "[10]"; //dolní levé políčko
             for (int i = 1; i <= 10; i++) //sloupečky
             {
-                array[0, i] = "[" + (char)('A' + i - 1) + "]"; // ChatGpt vařil
+                array[0, i] = "[" + (char)('A' + i - 1) + "]"; 
             }
         }
         static (int row, int col) Input()
@@ -125,30 +125,23 @@ namespace BattleShip2
             while (!validInput)
             {
                 string input = Console.ReadLine().ToUpper();
-                if (input.Length != 2)
+                
+                if (input.Length < 2 || input.Length > 3)// ověření zda mávstup správnou délku
                 {
                     Write("Blbá souřadnice, zadej znovu., např A4");
                 }
                 else
                 {
                     char rowChar = input[0];
-                    int index = rows.IndexOf(rowChar);
-                    if (index == -1 || !char.IsDigit(input[1]))
+                    int index = rows.IndexOf(rowChar);// zjistíme index písmena řádku
+                    if (index == -1 || !int.TryParse(input.Substring(1), out int col) || col < 1 || col > 10)
                     {
                         Write("Blbá souřadnice, zadej znovu., např A4");
                     }
                     else
                     {
-                        int col = int.Parse(input[1].ToString());
-                        if (col < 1 || col > 10)
-                        {
-                            Write("Blbá souřadnice, zadej znovu., např A4");
-                        }
-                        else
-                        {
-                            validInput = true;
-                            return (index + 1, col); // vráti souřadnice bodu
-                        }
+                        validInput = true;
+                        return (index + 1, col); //index + 1 pro správné číslování od 1
                     }
                 }
             }
@@ -199,7 +192,7 @@ namespace BattleShip2
                         Write("Nějak se mi nepovedlo loď umístit, zkus to znovu.");
                     }
                 }
-                userIsNotMonkey = false; // Rvrátí bool do původního stavu
+                userIsNotMonkey = false; // vrátí bool do původního stavu
                 if (ship.Count != 0)
                 {
                     Write("Jakou loď chceš umístit? (zadej písmenko označující daný typ lodi)");
@@ -355,10 +348,9 @@ namespace BattleShip2
         {
             bool strike = false;
             int scoreC = 0; //computer score
-            int scoreP = 0; // plaxer score
-            while (scoreC==17 || scoreP == 17)
-            {
-                Console.Clear(); //vyčístí konzoli od bordelu
+            int scoreP = 0; // player score
+            while (scoreC<17 || scoreP < 17)
+            {               
                 PlayerTurn(arrayP, arrayC, arrayG);
                 if (strike)
                 {
@@ -386,22 +378,47 @@ namespace BattleShip2
         {
             Write("Tak na jakou pozici zaútočíme?");
             var coordinatesA = Input(); //coordinatesATTACK
-            if (arrayG[coordinatesA.row, coordinatesA.col] == "[S]")
+            if (arrayG[coordinatesA.col, coordinatesA.row] == "[S]")
             {                
-                arrayC[coordinatesA.row, coordinatesA.col] = "[X]";
+                arrayC[coordinatesA.col, coordinatesA.row] = "[X]";
                 Console.WriteLine("Loď zasažena");
                 return true;
             }
             else 
             {
-                arrayC[coordinatesA.row, coordinatesA.col] = "[N]"; // n jako nic
+                arrayC[coordinatesA.row, coordinatesA.col] = "[N]"; // n jako nic tu nehledej
                 Console.WriteLine("Vedle, zasmál se počítač.");
                 return false;
             }
         }
-        static void ComputerTurn(string[,] arrayP, string[,] arrayC, string[,] arrayG) 
+        static bool ComputerTurn(string[,] arrayP, string[,] arrayC, string[,] arrayG)
         {
+            Random random = new Random();
+            bool validMove = false;
 
+            Write("Počítač přemýšlí, kam zaútočit...");
+            Thread.Sleep(1000); // simuluje přemýšlení
+            while (!validMove)
+            {
+                int row = random.Next(1, 11); //vygeneruje náhodné souřadnice
+                int col = random.Next(1, 11);
+                if (arrayC[row, col] == "[0]")
+                {
+                    if (arrayP[row, col] == "[S]") // zásah
+                    {                       
+                        arrayP[row, col] = "[X]";
+                        Write($"Počítač zasáhl tvoji loď na {((char)('A' + col - 1))}{row}!");
+                        return true; //vrátí true
+                    }
+                    else // Minul
+                    {
+                        arrayP[row, col] = "[N]";
+                        Write("Počítač minul.");
+                        return false; 
+                    }
+                }
+            }
+            return false; // sem bychom jsme se snad neměli nikdy podívat
         }
         static void Main(string[] args)
         {
@@ -420,7 +437,7 @@ namespace BattleShip2
             Write("Tak a teď přejdeme k samotné hře");
             CompletePrintArray(arrayP,arrayC);
             Game(arrayP,arrayC,arrayG);
-            Console.ReadKey();
+            Console.ReadKey();//eniky beniky na holý pupíky aspoň čtyřku
         }
     }
 }
