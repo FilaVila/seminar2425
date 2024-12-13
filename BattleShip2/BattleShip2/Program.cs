@@ -121,7 +121,6 @@ namespace BattleShip2
         {
             bool validInput = false;
             List<char> rows = new List<char>() { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J' }; //sloupečky
-
             while (!validInput)
             {
                 string input = Console.ReadLine().ToUpper();
@@ -278,10 +277,14 @@ namespace BattleShip2
             int rowStep = 0, colStep = 0; // Určí kroky pro každý směr
             switch (direction)
             {
-                case 'N': rowStep = -1; break;
-                case 'D': rowStep = 1; break;
-                case 'L': colStep = -1; break;
-                case 'P': colStep = 1; break;
+                case 'N': rowStep = -1; 
+                    break;
+                case 'D': rowStep = 1; 
+                    break;
+                case 'L': colStep = -1; 
+                    break;
+                case 'P': colStep = 1; 
+                    break;
                 default:
                     Write("Špatně zadaný směr, zkus to znovu.");
                     return false;
@@ -368,6 +371,7 @@ namespace BattleShip2
             if (scoreC == 17)
             {
                 Write("Je mi to líto, počítač vyhrál");
+                System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=SmJ37oXkLyo");
             }
             else 
             {
@@ -437,7 +441,7 @@ namespace BattleShip2
             Write("Tak a teď přejdeme k samotné hře");
             CompletePrintArray(arrayP,arrayC);
             Game(arrayP,arrayC,arrayG);
-            Console.ReadKey();//eniky beniky na holý pupíky aspoň čtyřku
+            Console.ReadKey();//nestíhal jsem vůbec nic....prosím prosím....eniky beniky na holý pupíky aspoň trojku
         }
     }
 }
