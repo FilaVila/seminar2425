@@ -53,6 +53,17 @@ namespace ClassPlayground
     {
         static void Main(string[] args)
         {
+            /*
+            Rectangle rectangle = new Rectangle(10, 5);
+            Shape2D shape = new Rectangle(2,3);
+            Console.WriteLine("reactangle area:" + rectangle.CalculateArea());
+            Console.WriteLine("shape area:" + shape.CalculateArea());
+
+            Circle circle = new Circle(5);
+            Console.WriteLine("Area kruhu: " +circle.CalculateArea());
+            Console.WriteLine("Aspect ratio: "+circle.CalculateAspectRatio());
+            Console.WriteLine("Is this point in the circle?: "+circle.ContainsPoint(5,5));*/
+            
             Console.WriteLine("Obdélníku");
             Console.WriteLine("Zdravím dobrodruhu prosím zadej výšku tvého obdélníku");
             double height = Convert.ToDouble(Console.ReadLine());
@@ -64,7 +75,6 @@ namespace ClassPlayground
             Console.WriteLine("a teď ještě výšku:");
             int y = Convert.ToInt32(Console.ReadLine());
             reactangle.WriteData(reactangle.ContainsPoint(x,y), reactangle.CalculateArea(), reactangle.CalculateAspectRatio());
-
             Console.WriteLine("Bank Account");
             Console.WriteLine("Vážený zákazníku, naše servery jsou na píču a tak si nepamatujeme vaše jméno prosím pomoz nám opravit tento nedostatek:");
             string name = Console.ReadLine();
@@ -84,7 +94,7 @@ namespace ClassPlayground
             int amount3 = Convert.ToInt32(Console.ReadLine());
             Bank_account scammer = new Bank_account("Nigerisjký princ",currency);
             account1.Transfer(accountNumber2,amount3, account1, scammer);
-            account1.WriteData();
+            account1.WriteData();           
             Console.ReadKey();
         }
     }

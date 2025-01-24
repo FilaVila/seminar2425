@@ -2,34 +2,51 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ClassPlayground
 {
-    internal class Rectangle
+    internal class Rectangle: Shape2D
     {
         public double height;
         public double width;
 
         public Rectangle(double height, double width) 
         {
-            this.height = height;
-            this.width = width;
+            if (width==0) this.width = 1;
+            else if (width<0)
+            {
+                this.width = -width;
+            }
+            else
+            {
+                this.width = width;
+            }
+            if(height==0)this.height = 1;
+            else if(height<0)
+            {
+                    this.height = -height;
+            }
+            else
+            {
+                this.height= height;
+            }
         }
-        public bool ContainsPoint(int x, int y) 
+        public override bool ContainsPoint(int x, int y) 
         {
             bool pravda = x<=height && y<=width;
             return pravda;
         }
-        public double CalculateAspectRatio() 
+        public override double CalculateAspectRatio() 
         {
             return height / width;
         }
-        public double CalculateArea() 
+        public override double CalculateArea() 
         {
-            double area = height * width;
-            return area;
+  
+            return height*width;
         }
         public void WriteData(bool pravda, double area, double ratio) 
         {
