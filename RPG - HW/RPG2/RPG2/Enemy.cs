@@ -38,7 +38,7 @@ namespace RPG2
                 }
             }
         }
-        public void Interaction(MainCharacter mainCh, Enemy enemy) 
+        public void Interaction(MainCharacter mainCh, Enemy enemy) //příprava na boj + souboj s Appou
         {
             Write("Po dlouhém hledání se "+mainCh.name+ " podařilo najít tábor, kde Appa přebýval. Po bližšímn prozkoumání ho napadly tři možnosti, jak na Appu zaútočit:\n\nPřímý Útok: " + mainCh.name + " se postavil Appa tváří v tvář v otevřeném boji.(útok + 10, zdraví - 10) - A\n\nTaktický Útok: " + mainCh.name + " zvolil taktický přístup, využil okolní prostředí a léčky.(zdraví + 5, útok + 5) - B\n\nSkrytý Útok: " + mainCh.name + " se rozhodl zaútočit skrytě, získal překvapení nad banditou. (zdraví + 10, útok - 10) - C\n");
             switch (LoadDecisionH()) 

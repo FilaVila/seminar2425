@@ -33,7 +33,7 @@ namespace RPG2
                 }
             }
         }
-        public void Combat(MainCharacter mainCh, Enemy enemy)
+        public void Combat(MainCharacter mainCh, Enemy enemy) //kombat
         {
             int i = 0;
             int j = 0;
@@ -41,7 +41,7 @@ namespace RPG2
             Console.WriteLine("Boj začal!!!\n\nÚtok!!! - A\n\nObrana je nejlepší útok. - B\n\nZkusím začít souboj zatancováním ...to ho jistě rozhodí. - C");
             while (mainCh.health > 0 && enemy.health > 0)
             {
-                if (i > 0)
+                if (i > 0) // zajišťuje, že není možno tancovat znova
                 {
                     Stats(mainCh, enemy);
                     Console.WriteLine("Nepřítel stále stojí!!! \nÚtok!!! - A\nObrana je nejlepší útok. - B\n");
@@ -70,6 +70,7 @@ namespace RPG2
                         else
                         {
                             Write("Takovéto fintičky už si " + enemy.name + "nenechá líbit a uštědří ti pořádnou ránu");
+                            enemy.Attack(mainCh, enemy);
                         }
                         break;
                     default:
@@ -79,7 +80,7 @@ namespace RPG2
                         break;
                 }
             }
-            if (mainCh.health <= 0)
+            if (mainCh.health <= 0) //nepřítel tě porazil (v podstatě nemožné)
             {
                 Write("Bojoval si statečně, ale nakonec ti to k ničemu nebylo. RIP");
                 Console.WriteLine("Děkuji, že si si zahrál moji hru :D");

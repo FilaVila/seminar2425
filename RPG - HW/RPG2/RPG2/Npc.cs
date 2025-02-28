@@ -10,7 +10,7 @@ namespace RPG2
     public abstract class Npc
     {
         public string name;
-        public void Write(string m) 
+        public void Write(string m) //psaní po písmenech
         {
             foreach (char l in m)
             {

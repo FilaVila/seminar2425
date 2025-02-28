@@ -29,7 +29,7 @@ namespace RPG2
             }
             return null;
         }
-        public void Theft(MainCharacter mainCh) 
+        public void Theft(MainCharacter mainCh) //okradení Longina, šance 1/6, že se ti podaří ho okrást
         {
             Random rnd = new Random();
             int a = rnd.Next(1, 7);
