@@ -10,6 +10,17 @@ namespace GraphPlayground
 {
     internal class Program
     {
+        public static void DFS2(Node currentNode) //rekurzivně
+        {
+            currentNode.visited = true;
+            foreach (Node neighbor in currentNode.neighbors)
+            {
+                if (!neighbor.visited) 
+                {
+                    DFS2(neighbor);
+                }
+            }
+        }
         public static void DFS(Graph graph, Node startNode, Node targetNode = null)
         {
             Node currentNode = null;
