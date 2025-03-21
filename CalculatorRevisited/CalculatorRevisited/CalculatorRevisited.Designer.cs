@@ -49,6 +49,8 @@
             this.buttonAns = new System.Windows.Forms.Button();
             this.buttonOff = new System.Windows.Forms.Button();
             this.timerOff = new System.Windows.Forms.Timer(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox1
@@ -255,11 +257,22 @@
             this.timerOff.Interval = 1500;
             this.timerOff.Tick += new System.EventHandler(this.timerOff_Tick);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::CalculatorRevisited.Properties.Resources.Oryctolagus_cuniculus_Rcdo;
+            this.pictureBox1.Location = new System.Drawing.Point(19, 518);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(72, 51);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 19;
+            this.pictureBox1.TabStop = false;
+            // 
             // CalculatorRevisited
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(491, 594);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.buttonOff);
             this.Controls.Add(this.buttonAns);
             this.Controls.Add(this.buttonClear);
@@ -281,6 +294,7 @@
             this.Controls.Add(this.textBox1);
             this.Name = "CalculatorRevisited";
             this.Text = "Calculator Revisited";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -308,6 +322,7 @@
         private System.Windows.Forms.Button buttonAns;
         private System.Windows.Forms.Button buttonOff;
         private System.Windows.Forms.Timer timerOff;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
