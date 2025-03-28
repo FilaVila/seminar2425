@@ -22,6 +22,9 @@ namespace malovani
         bool rainbowActive = false;
         char tool = 'A';
         Random rnd = new Random();
+        float w=0;
+        float h=0;
+        char shape = 'A';
 
         public Form1()
         {
@@ -181,6 +184,28 @@ namespace malovani
             pen.Width = 5;
             tool = 'A';
             SliderSet(pen);
+        }
+
+        private void buttonSave_Click(object sender, EventArgs e) //chtěl jsem udělat čudlík na ukládání, ale musel bych celý kód překopat do bitmapy, nebo celý kód přesunout z MouseMove do panel1.Paint()
+        {
+
+            /*SaveFileDialog save = new SaveFileDialog();
+            save.Filter = "(*.jpg)|*.jpg|(*.png)|*.png|(*.gif)|*.gif";
+            if (save.ShowDialog() == DialogResult.OK)
+            {               
+                Bitmap bmp = new Bitmap(panel1.Width, panel1.Height);                
+                panel1.DrawToBitmap(bmp, new Rectangle(0, 0, panel1.Width, panel1.Height));                
+                bmp.Save(save.FileName);
+            }*/
+            System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+        }
+
+        private void buttonDraw_Click(object sender, EventArgs e)
+        {
+            switch (shape) 
+            {
+
+            }
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
