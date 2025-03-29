@@ -32,7 +32,6 @@
             this.buttonClear = new System.Windows.Forms.Button();
             this.textBoxLocation = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.buttonRainbow = new System.Windows.Forms.Button();
             this.buttonLightBlue = new System.Windows.Forms.Button();
             this.buttonOrange = new System.Windows.Forms.Button();
             this.buttonGrey = new System.Windows.Forms.Button();
@@ -46,27 +45,29 @@
             this.labelSize = new System.Windows.Forms.Label();
             this.buttonDraw = new System.Windows.Forms.Button();
             this.labelLocation = new System.Windows.Forms.Label();
-            this.buttonStar = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.pictureBoxCurrentColor = new System.Windows.Forms.PictureBox();
             this.trackBarSize = new System.Windows.Forms.TrackBar();
+            this.buttonSave = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBoxWidth = new System.Windows.Forms.TextBox();
+            this.textBoxHeight = new System.Windows.Forms.TextBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.pictureBoxCurrentColor = new System.Windows.Forms.PictureBox();
             this.buttonEraser = new System.Windows.Forms.Button();
             this.buttonSpray = new System.Windows.Forms.Button();
             this.buttonCrayon = new System.Windows.Forms.Button();
             this.buttonPen = new System.Windows.Forms.Button();
             this.buttonBrush = new System.Windows.Forms.Button();
             this.buttonPencil = new System.Windows.Forms.Button();
+            this.buttonStar = new System.Windows.Forms.Button();
             this.buttonRectangle = new System.Windows.Forms.Button();
             this.buttonCircle = new System.Windows.Forms.Button();
-            this.buttonSave = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBoxWidth = new System.Windows.Forms.TextBox();
-            this.textBoxHeight = new System.Windows.Forms.TextBox();
+            this.buttonRainbow = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCurrentColor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarSize)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCurrentColor)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -77,7 +78,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(500, 350);
             this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             this.panel1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseUp);
@@ -103,8 +103,6 @@
             this.textBoxLocation.Size = new System.Drawing.Size(135, 35);
             this.textBoxLocation.TabIndex = 2;
             this.textBoxLocation.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBoxLocation.TextChanged += new System.EventHandler(this.textBoxLocation_TextChanged);
-            this.textBoxLocation.MouseUp += new System.Windows.Forms.MouseEventHandler(this.textBoxLocation_MouseUp);
             // 
             // panel2
             // 
@@ -124,16 +122,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(282, 118);
             this.panel2.TabIndex = 3;
-            // 
-            // buttonRainbow
-            // 
-            this.buttonRainbow.BackgroundImage = global::malovani.Properties.Resources.duha2;
-            this.buttonRainbow.Location = new System.Drawing.Point(227, 61);
-            this.buttonRainbow.Name = "buttonRainbow";
-            this.buttonRainbow.Size = new System.Drawing.Size(50, 50);
-            this.buttonRainbow.TabIndex = 5;
-            this.buttonRainbow.UseVisualStyleBackColor = true;
-            this.buttonRainbow.Click += new System.EventHandler(this.buttonRainbow_Click);
             // 
             // buttonLightBlue
             // 
@@ -249,7 +237,7 @@
             // 
             // buttonDraw
             // 
-            this.buttonDraw.Location = new System.Drawing.Point(932, 464);
+            this.buttonDraw.Location = new System.Drawing.Point(932, 465);
             this.buttonDraw.Name = "buttonDraw";
             this.buttonDraw.Size = new System.Drawing.Size(89, 35);
             this.buttonDraw.TabIndex = 6;
@@ -267,15 +255,6 @@
             this.labelLocation.TabIndex = 7;
             this.labelLocation.Text = "Location:";
             // 
-            // buttonStar
-            // 
-            this.buttonStar.Location = new System.Drawing.Point(827, 394);
-            this.buttonStar.Name = "buttonStar";
-            this.buttonStar.Size = new System.Drawing.Size(80, 55);
-            this.buttonStar.TabIndex = 10;
-            this.buttonStar.Text = "hvezdicka";
-            this.buttonStar.UseVisualStyleBackColor = true;
-            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.White;
@@ -285,16 +264,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(58, 58);
             this.panel3.TabIndex = 17;
-            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
-            // 
-            // pictureBoxCurrentColor
-            // 
-            this.pictureBoxCurrentColor.BackColor = System.Drawing.Color.Black;
-            this.pictureBoxCurrentColor.Location = new System.Drawing.Point(3, 3);
-            this.pictureBoxCurrentColor.Name = "pictureBoxCurrentColor";
-            this.pictureBoxCurrentColor.Size = new System.Drawing.Size(50, 50);
-            this.pictureBoxCurrentColor.TabIndex = 0;
-            this.pictureBoxCurrentColor.TabStop = false;
             // 
             // trackBarSize
             // 
@@ -306,6 +275,76 @@
             this.trackBarSize.TabIndex = 18;
             this.trackBarSize.Value = 3;
             this.trackBarSize.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            // 
+            // buttonSave
+            // 
+            this.buttonSave.Location = new System.Drawing.Point(24, 26);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(60, 60);
+            this.buttonSave.TabIndex = 19;
+            this.buttonSave.Text = "Save";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.Location = new System.Drawing.Point(542, 400);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(69, 25);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "Width:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.Location = new System.Drawing.Point(537, 446);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(74, 25);
+            this.label2.TabIndex = 21;
+            this.label2.Text = "Height:";
+            // 
+            // textBoxWidth
+            // 
+            this.textBoxWidth.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.textBoxWidth.Location = new System.Drawing.Point(625, 400);
+            this.textBoxWidth.Multiline = true;
+            this.textBoxWidth.Name = "textBoxWidth";
+            this.textBoxWidth.Size = new System.Drawing.Size(100, 35);
+            this.textBoxWidth.TabIndex = 22;
+            this.textBoxWidth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBoxHeight
+            // 
+            this.textBoxHeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.textBoxHeight.Location = new System.Drawing.Point(625, 446);
+            this.textBoxHeight.Multiline = true;
+            this.textBoxHeight.Name = "textBoxHeight";
+            this.textBoxHeight.Size = new System.Drawing.Size(100, 35);
+            this.textBoxHeight.TabIndex = 23;
+            this.textBoxHeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.checkBox1.Location = new System.Drawing.Point(837, 471);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(66, 29);
+            this.checkBox1.TabIndex = 24;
+            this.checkBox1.Text = "Fill?";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // pictureBoxCurrentColor
+            // 
+            this.pictureBoxCurrentColor.BackColor = System.Drawing.Color.Black;
+            this.pictureBoxCurrentColor.Location = new System.Drawing.Point(3, 3);
+            this.pictureBoxCurrentColor.Name = "pictureBoxCurrentColor";
+            this.pictureBoxCurrentColor.Size = new System.Drawing.Size(50, 50);
+            this.pictureBoxCurrentColor.TabIndex = 0;
+            this.pictureBoxCurrentColor.TabStop = false;
             // 
             // buttonEraser
             // 
@@ -373,6 +412,17 @@
             this.buttonPencil.UseVisualStyleBackColor = true;
             this.buttonPencil.Click += new System.EventHandler(this.buttonPencil_Click);
             // 
+            // buttonStar
+            // 
+            this.buttonStar.BackgroundImage = global::malovani.Properties.Resources.favpng_pentacle_pentagram;
+            this.buttonStar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.buttonStar.Location = new System.Drawing.Point(827, 394);
+            this.buttonStar.Name = "buttonStar";
+            this.buttonStar.Size = new System.Drawing.Size(80, 55);
+            this.buttonStar.TabIndex = 10;
+            this.buttonStar.UseVisualStyleBackColor = true;
+            this.buttonStar.Click += new System.EventHandler(this.buttonStar_Click);
+            // 
             // buttonRectangle
             // 
             this.buttonRectangle.BackColor = System.Drawing.Color.White;
@@ -383,6 +433,7 @@
             this.buttonRectangle.Size = new System.Drawing.Size(80, 55);
             this.buttonRectangle.TabIndex = 9;
             this.buttonRectangle.UseVisualStyleBackColor = false;
+            this.buttonRectangle.Click += new System.EventHandler(this.buttonRectangle_Click);
             // 
             // buttonCircle
             // 
@@ -394,58 +445,24 @@
             this.buttonCircle.Size = new System.Drawing.Size(80, 55);
             this.buttonCircle.TabIndex = 8;
             this.buttonCircle.UseVisualStyleBackColor = false;
+            this.buttonCircle.Click += new System.EventHandler(this.buttonCircle_Click);
             // 
-            // buttonSave
+            // buttonRainbow
             // 
-            this.buttonSave.Location = new System.Drawing.Point(24, 26);
-            this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(60, 60);
-            this.buttonSave.TabIndex = 19;
-            this.buttonSave.Text = "Save";
-            this.buttonSave.UseVisualStyleBackColor = true;
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(542, 400);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 25);
-            this.label1.TabIndex = 20;
-            this.label1.Text = "Width:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(537, 446);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 25);
-            this.label2.TabIndex = 21;
-            this.label2.Text = "Height:";
-            // 
-            // textBoxWidth
-            // 
-            this.textBoxWidth.Location = new System.Drawing.Point(625, 400);
-            this.textBoxWidth.Multiline = true;
-            this.textBoxWidth.Name = "textBoxWidth";
-            this.textBoxWidth.Size = new System.Drawing.Size(100, 35);
-            this.textBoxWidth.TabIndex = 22;
-            // 
-            // textBoxHeight
-            // 
-            this.textBoxHeight.Location = new System.Drawing.Point(625, 446);
-            this.textBoxHeight.Multiline = true;
-            this.textBoxHeight.Name = "textBoxHeight";
-            this.textBoxHeight.Size = new System.Drawing.Size(100, 35);
-            this.textBoxHeight.TabIndex = 23;
+            this.buttonRainbow.BackgroundImage = global::malovani.Properties.Resources.duha2;
+            this.buttonRainbow.Location = new System.Drawing.Point(227, 61);
+            this.buttonRainbow.Name = "buttonRainbow";
+            this.buttonRainbow.Size = new System.Drawing.Size(50, 50);
+            this.buttonRainbow.TabIndex = 5;
+            this.buttonRainbow.UseVisualStyleBackColor = true;
+            this.buttonRainbow.Click += new System.EventHandler(this.buttonRainbow_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1052, 511);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.textBoxHeight);
             this.Controls.Add(this.textBoxWidth);
             this.Controls.Add(this.label2);
@@ -474,8 +491,8 @@
             this.Text = "Form1";
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCurrentColor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarSize)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCurrentColor)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -518,6 +535,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBoxWidth;
         private System.Windows.Forms.TextBox textBoxHeight;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 

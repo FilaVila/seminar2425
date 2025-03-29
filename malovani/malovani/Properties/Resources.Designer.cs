@@ -103,6 +103,16 @@ namespace malovani.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap favpng_pentacle_pentagram {
+            get {
+                object obj = ResourceManager.GetObject("favpng_pentacle_pentagram", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Fountain_Pen_Head__1_ {
             get {
                 object obj = ResourceManager.GetObject("Fountain_Pen_Head__1_", resourceCulture);
@@ -203,6 +213,16 @@ namespace malovani.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap pentagram {
+            get {
+                object obj = ResourceManager.GetObject("pentagram", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap pngegg {
             get {
                 object obj = ResourceManager.GetObject("pngegg", resourceCulture);
@@ -226,6 +246,36 @@ namespace malovani.Properties {
         internal static System.Drawing.Bitmap spray_can_png_28843__1_ {
             get {
                 object obj = ResourceManager.GetObject("spray_can_png_28843__1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap star {
+            get {
+                object obj = ResourceManager.GetObject("star", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap star1 {
+            get {
+                object obj = ResourceManager.GetObject("star1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap star2 {
+            get {
+                object obj = ResourceManager.GetObject("star2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

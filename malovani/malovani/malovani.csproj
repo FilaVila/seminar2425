@@ -131,5 +131,20 @@
   <ItemGroup>
     <None Include="Resources\7094.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pentagram.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\favpng_pentacle-pentagram.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
