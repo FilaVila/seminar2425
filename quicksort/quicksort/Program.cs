@@ -18,6 +18,8 @@ namespace quicksort
              */
 
             int[] myArray = new int[10] {12,54,87,123,4,5,6,7,8,84};
+            //stačí selection sort, bubble sort, insertion sort, stačí zmínit quick sort
+            //potřebovat si pamatovat, že všechny alogrytmy mají slžitost n na druhou 
 
         }
     }
