@@ -1,0 +1,18 @@
+h1{
+    color: rgb(14, 11, 211);
+    text-align: center;
+    font-size: x-large;
+}
+h2{
+    color: magenta;
+    text-align: left;
+    font-size: medium;
+}
+p{
+    color: black;
+    font-size: small;
+    text-align: left;
+}
+body{
+    background-color: antiquewhite;
+}
